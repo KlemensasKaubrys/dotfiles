@@ -1,6 +1,6 @@
 xrandr --output HDMI-A-0 --mode 1920x1080 --rate 72  --primary --left-of eDP &
 nm-applet &
-/usr/libexec/polkit-mate-authentication-agent-1 &
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 slstatus &
 ~/.fehbg &
 picom &
