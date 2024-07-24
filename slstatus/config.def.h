@@ -68,7 +68,6 @@ static const struct arg args[] = {
 		/* function format          argument */
 	        { run_command, "vol:%3s%%|",       "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F': ' '{print $2}' | awk '{print $1 * 100}'" },
 	        { keymap, "%s|",               NULL  },
-	        { battery_perc, "bat1:%3s%%",     "BAT0"  },
-	        { battery_perc, ",bat2:%3s%%|",     "BAT1"  },
+	        { battery_perc, "bat:%3s%%|",     "BAT0"  },
 	        { datetime, "%s",                "%F %T" },
 };
