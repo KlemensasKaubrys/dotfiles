@@ -68,7 +68,7 @@ static const char *volupcmd[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@",
 static const char *voldowncmd[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
 static const char *pvc[]  = { "pavucontrol", NULL };
 static const char *fm[] = { "pcmanfm", NULL};
-static const char *browser[] = { "firefox", NULL};
+static const char *browser[] = { "chromium", NULL};
 
 
 #include <X11/XF86keysym.h>
@@ -114,8 +114,8 @@ static const Key keys[] = {
         { 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
         { 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd }   },
         { MODKEY,                       XK_w,      spawn,          {.v = pvc} },
-        { MODKEY,                       XK_e,      spawn,          {.v = browser} },
-        { MODKEY,                       XK_q,      spawn,          {.v = fm} },
+        { MODKEY,                       XK_q,      spawn,          {.v = browser} },
+        { MODKEY,                       XK_e,      spawn,          {.v = fm} },
 };
 
 /* button definitions */
