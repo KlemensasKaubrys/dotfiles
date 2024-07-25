@@ -69,7 +69,8 @@ static const char *voldowncmd[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@
 static const char *pvc[]  = { "pavucontrol", NULL };
 static const char *fm[] = { "pcmanfm", NULL};
 static const char *browser[] = { "chromium", NULL};
-
+static const char *powermenu[] = {"/home/clemens/.scripts/powermenu.sh", NULL};
+static const char *bluetooth[] = {"/home/clemens/.scripts/bluetooth.sh", NULL};
 
 #include <X11/XF86keysym.h>
 #include "movestack.c"
@@ -116,6 +117,8 @@ static const Key keys[] = {
         { MODKEY,                       XK_w,      spawn,          {.v = pvc} },
         { MODKEY,                       XK_q,      spawn,          {.v = browser} },
         { MODKEY,                       XK_e,      spawn,          {.v = fm} },
+        { ShiftMask,                    XK_q,      spawn,          {.v = powermenu} },
+        { MODKEY,                       XK_a,      spawn,          {.v = bluetooth} },
 };
 
 /* button definitions */
