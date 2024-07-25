@@ -17,3 +17,8 @@ bold_italic.family = "JetBrainsMono NF"
 
 size = 13.0
 
+[cursor]
+style = { shape = "Beam", blinking = "Always"}
+vi_mode_style = { shape = "Beam", blinking = "Always"}
+blink_timeout = 0
+unfocused_hollow = false
