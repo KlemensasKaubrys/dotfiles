@@ -43,7 +43,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Pavucontrol uses gtk4 instead of gtk3 so to get theming I symlink gtk-3.0 to gtk-4.0
 sudo ln -s /home/clemens/.config/gtk-3.0 /home/clemens/.config/gtk-4.0
 # Software I use
-sudo pacman -S flameshot gvim ufw tlp tlp-rdw picom dunst feh mate-polkit network-manager-applet lxappearance pavucontrol pcmanfm
+sudo pacman -S flameshot gvim ufw tlp tlp-rdw picom dunst feh mate-polkit network-manager-applet lxappearance pavucontrol pcmanfm tar bzip2 unrar gzip p7zip unzip chromium
 # Fonts used in my dwm setup
 sudo pacman -S ttf-space-mono-nerd ttf-jetbrains-mono-nerd
 ```
