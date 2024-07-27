@@ -6,7 +6,7 @@ sudo -s
 btrfs subvolume create /var/swap
 truncate -s 0 /var/swap/swapfile
 chattr +C /var/swap/swapfile
-btrfs property set /var/swap/swapfile compression none
+btrfs property set /var/swap compression none
 chmod 600 /var/swap/swapfile
 dd if=/dev/zero of=/var/swap/swapfile bs=1G count=16 status=progress # Change count=16 to required swap size in GB
 mkswap /var/swap/swapfile
