@@ -33,7 +33,7 @@ chown -R $username:$username /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-3.0
 
 # Install base system
-xbps-install -Sy river Waybar tofi mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet flameshot wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap wlr-randr yazi
+xbps-install -Sy river Waybar tofi mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet flameshot wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap wlr-randr yazi ImageMagick ufw mate-polkit gtklock 
 
 ln -s /etc/sv/dbus /var/service/
 ln -s /etc/sv/bluetoothd /var/service/
@@ -140,9 +140,6 @@ EOF
 
 rm -f /var/service/${SERVICE_NAME}
 ln -s /etc/sv/${AUTOLOGIN_SERVICE_NAME} /var/service/
-
-
-
 
 ask_and_restart() {
     read -p "Do you want to restart now? (yes/no): " response
