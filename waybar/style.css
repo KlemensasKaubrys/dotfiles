@@ -75,6 +75,9 @@ tooltip,
 #clock {
     background: @background;
 }
+#tags button {
+  color: @occupied;
+}
 #tags button:hover {
   box-shadow: inherit;
   text-shadow: inherit;
@@ -88,10 +91,6 @@ tooltip,
 
 #tags button.focused {
   color: @foreground;
-}
-
-#tags button.unfocused {
-  color: @occupied;
 }
 
 #tags button.urgent {
