@@ -3,14 +3,17 @@ function keyboard {
 	options="gb\nus\nlt"
 	selected=$(echo -e $options | tofi "$@" )
 	if [[ $selected = "gb" ]]; then 
-   		setxkbmap gb 
 		riverctl keyboard-layout gb
+		setxkbmap gb
+		pkill -RTMIN+10 waybar
 	elif [[ $selected = "us" ]]; then
-   		setxkbmap us
 		riverctl keyboard-layout us
+		setxkbmap us
+		pkill -RTMIN+10 waybar
 	elif [[ $selected = "lt" ]]; then
-   		setxkbmap lt
 		riverctl keyboard-layout lt
+		setxkbmap lt
+		pkill -RTMIN+10 waybar
 	fi
 }
 keyboard "$@"

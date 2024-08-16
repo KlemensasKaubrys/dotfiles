@@ -23,7 +23,7 @@ riverctl spawn "foot --server"
 riverctl spawn pipewire
 riverctl spawn flameshot
 riverctl spawn nm-applet
-riverctl spawn "waybar -c /home/clemens/.config/waybar/config.jsonc -s /home/clemens/.config/waybar/style.css"
+riverctl spawn "sleep 1 && waybar -c /home/clemens/.config/waybar/config.jsonc -s /home/clemens/.config/waybar/style.css"
 riverctl spawn mako
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
@@ -31,6 +31,7 @@ riverctl map normal Super+Shift Return spawn footclient
 riverctl map normal Super P spawn launch-tofi
 riverctl map normal Super+Shift P spawn keyboardswitcher.sh
 riverctl map normal Super A spawn bluetooth.sh
+riverctl map normal Super F1 spawn lock.sh
 riverctl map normal Super F4 spawn powermenu.sh
 riverctl map normal Super Q spawn brave
 riverctl map normal Super E spawn pcmanfm

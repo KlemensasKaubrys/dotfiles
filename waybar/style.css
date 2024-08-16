@@ -1,4 +1,4 @@
-@define-color background #010c12;
+@define-color background rgba(31, 35, 53, 0.85);
 @define-color foreground #ffffff;
 @define-color focused #ffffff;
 @define-color occupied #808080;
@@ -32,6 +32,9 @@ window#waybar {
     border: 1px solid #5e5e5e;
 }
 
+#battery {
+    margin-left: 14px
+}
 #bluetooth {
     margin-left: 14px
 }

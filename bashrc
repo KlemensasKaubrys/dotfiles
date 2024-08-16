@@ -4,13 +4,12 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias sudovim='sudo -E -s nvim'
+alias sudovim='sudo -E vim'
 PS1='[\u@\h \W]\$ '
 export PATH="$PATH:$HOME/dotfiles/scripts"
 export HISTFILESIZE=10000
 export HISTSIZE=500
-export HISTTIMEFORMAT="%F %T"
-
+export HISTTIMEFORMAT="%F %T | "
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 
@@ -35,7 +34,7 @@ alias mkdir='mkdir -p'
 alias ps='ps auxf'
 alias ping='ping -c 10'
 alias less='less -R'
-alias cls='clear'
+alias clr='clear'
 alias apt-get='sudo apt-get'
 alias vi='nvim'
 alias svi='sudo vi'

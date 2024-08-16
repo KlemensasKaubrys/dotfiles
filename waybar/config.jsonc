@@ -58,13 +58,14 @@
     "tooltip-format-disconnected": "MPD (disconnected)"
 },
   "group/systeminfo": {
-  "modules":["battery","bluetooth","wireplumber"],
+  "modules":["load","battery","bluetooth","wireplumber"],
   "orientation":"horizontal"
   },
   "custom/lang": {
   "exec": "setxkbmap -query | grep layout | cut -f2 -d':' | tr -d '[:blank:]'",
   "format": "  {}",
-  "interval": "1"
+  "signal": 10,
+  "interval": 5
   },
   "battery": {
     "bat": "BAT0",
@@ -88,14 +89,6 @@
     "format": "",
     "format-connected-battery": "<span color=\"#ffffff\"></span> {device_battery_percentage}%"
   },
-  "custom/mpd": {
-    "exec": "player",
-    "signal": 1
-  },
-  "custom/weather": {
-    "exec": "cat $XDG_DATA_HOME/weather",
-    "signal": 2
-  },
   "wireplumber": {
     "format": "{icon} {volume}% ",
     "format-muted": "<span color=\"#ffffff\"> </span>",
@@ -105,6 +98,16 @@
 	"<span color=\"#ffffff\"></span>",
 	"<span color=\"#ffffff\"> </span>"
     ]
+},
+
+"tray": {
+    "icon-size": 20,
+    "spacing": 10
+},
+"load": {
+    "interval": 5,
+    "format": " {load1}",
+    "max-length": 10
 }
 
 }

@@ -19,6 +19,8 @@ ln -s /home/$username/dotfiles/waybar /home/$username/.config/
 ln -s /home/$username/dotfiles/foot /home/$username/.config/
 ln -s /home/$username/dotfiles/mako /home/$username/.config/
 ln -s /home/$username/dotfiles/tofi /home/$username/.config/
+ln -s /home/$username/dotfiles/vim /home/$username/.config/
+ln -s /home/$username/dotfiles/gtklock /home/$username/.config/
 ln -s /home/$username/dotfiles/nvim /home/$username/.config/
 
 # Change xbps mirror
@@ -33,16 +35,21 @@ chown -R $username:$username /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-3.0
 
 # Install base system
-xbps-install -Sy river Waybar tofi mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet flameshot wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap wlr-randr yazi ImageMagick ufw mate-polkit gtklock swaybg xorg-fonts
+xbps-install -Sy river Waybar tofi mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet flameshot wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap wlr-randr yazi ImageMagick ufw mate-polkit gtklock swaybg xorg-fonts fonts-roboto-ttf foot grim firefox base-devel bluez
 
 ln -s /etc/sv/dbus /var/service/
 ln -s /etc/sv/bluetoothd /var/service/
+ln -s /home/clemens/dotfiles/user-overrides.js /home/$username/.mozilla/firefox/*.default-default/
+chown -R $username:$username /home/$username/.mozilla/firefox/*.default-default/user-overrides.js
+
+# Installing vim-plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # Downloading anki and picard, adding them to binaries
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub net.ankiweb.Anki app.drey.EarTag com.brave.Browser com.github.tchx84.Flatseal cc.arduino.IDE2
+flatpak install flathub net.ankiweb.Anki app.drey.EarTag com.github.tchx84.Flatseal cc.arduino.IDE2
 ln -s /var/lib/flatpak/exports/bin/net.ankiweb.Anki /usr/bin/anki
-ln -s /var/lib/flatpak/exports/bin/com.brave.Browser  /usr/bin/brave
 ln -s /var/lib/flatpak/exports/bin/com.github.tchx84.Flatseal /usr/bin/flatseal
 ln -s /var/lib/flatpak/exports/bin/app.drey.EarTag /usr/bin/eartag
 ln -s /var/lib/flatpak/exports/bin/cc.arduino.IDE2 /usr/bin/arduino
@@ -125,7 +132,6 @@ cp -R /etc/sv/${SERVICE_NAME} /etc/sv/${AUTOLOGIN_SERVICE_NAME}
 
 mkdir -p $(dirname $CONF_FILE)
 
-# I hate my life -> this script is so shit
 cat <<EOF > "$CONF_FILE"
 if [ -x /sbin/agetty -o -x /bin/agetty ]; then
         # util-linux specific settings
