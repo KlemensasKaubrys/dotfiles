@@ -74,8 +74,7 @@
    "custom/lang": {
       "exec": "setxkbmap -query | grep layout | cut -f2 -d':' | tr -d '[:blank:]'",
       "format": "  {}",
-      "signal": 10,
-      "interval": 5
+      "signal": 10
    },
    "battery": {
       "bat": "BAT0",
