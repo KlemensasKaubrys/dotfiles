@@ -21,17 +21,22 @@ window#waybar {
 #clock {
     background-color: @background;
     padding: 0px 5px 0px 9px;
-    margin-left: 2px;
+    margin-left: 4px;
     border: 1px solid #5e5e5e;
 }
 
 #systeminfo {
     background-color: @background;
     padding: 0px 5px 0px 12px;
-    margin-left: 2px;
+    margin-left: 4px;
     border: 1px solid #5e5e5e;
 }
-
+#window {
+    background-color: @background;
+    padding: 0px 8px 0px 8px;
+    margin-left: 4px;
+    border: 1px solid #5e5e5e;
+}
 #battery {
     margin-left: 14px
 }
@@ -44,21 +49,21 @@ window#waybar {
 #custom-lang {
     background-color: @background;
     padding: 0px 11px 0px 11px;
-    margin-left: 2px;
+    margin-left: 4px;
     border: 1px solid #5e5e5e;
 }
 
 #tray {
     background-color: @background;
     padding: 0px 8px 0px 9px;
-    margin-left: 2px;
+    margin-left: 4px;
     border: 1px solid #5e5e5e;
 }
 
 #mpd {
     background-color: @background;
     padding: 0px 16px 0px 9px;
-    margin-left: 2px;
+    margin-left: 4px;
     border: 1px solid #5e5e5e;
 }
 
