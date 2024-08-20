@@ -14,6 +14,7 @@ riverctl default-attach-mode bottom
 riverctl focus-follows-cursor always
 riverctl set-cursor-warp on-focus-change
 riverctl hide-cursor when-typing disabled
+riverctl xcursor-theme macOS 24
 
 # ---- Monitr ----
 wlr-randr --output HDMI-A-1 --mode 1920x1080@60Hz --pos -1920,0
@@ -23,8 +24,13 @@ riverctl spawn "foot --server"
 riverctl spawn pipewire
 riverctl spawn flameshot
 riverctl spawn nm-applet
-riverctl spawn "sleep 1 && waybar -c /home/clemens/.config/waybar/config.jsonc -s /home/clemens/.config/waybar/style.css"
+riverctl spawn mpd
+riverctl spawn "sleep 0.2 && waybar -c /home/clemens/.config/waybar/config.jsonc -s /home/clemens/.config/waybar/style.css"
 riverctl spawn mako
+riverctl spawn import-gsettings
+riverctl spawn "swaybg -o \* -i ~/Wallpapers/Upscaled/wallhaven-dgeqoj_waifu2x_art_noise1_scale.png -m fill"
+riverctl spawn "gsettings set org.gnome.desktop.interface cursor-theme 'macOS'"
+riverctl spawn "/usr/libexec/polkit-mate-authentication-agent-1"
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal Super+Shift Return spawn footclient
@@ -33,7 +39,7 @@ riverctl map normal Super+Shift P spawn keyboardswitcher.sh
 riverctl map normal Super A spawn bluetooth.sh
 riverctl map normal Super F1 spawn lock.sh
 riverctl map normal Super F4 spawn powermenu.sh
-riverctl map normal Super Q spawn brave
+riverctl map normal Super Q spawn firefox-wayland
 riverctl map normal Super E spawn pcmanfm
 riverctl map normal Super W spawn pavucontrol
 
@@ -171,9 +177,26 @@ do
     riverctl map $mode None XF86AudioNext  spawn 'playerctl next'
 
     # Control screen backlight brightness with brightnessctl (https://github.com/Hummer12007/brightnessctl)
-    riverctl map $mode None XF86MonBrightnessUp   spawn 'brightnessctl set +5%'
-    riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%-'
+    riverctl map $mode None XF86MonBrightnessUp   spawn 'xbacklight -inc 5 &&  xbacklight -get | while read OUTPUT; do notify-send --app-name "Brightness" "$OUTPUT%"; done'
+    riverctl map $mode None XF86MonBrightnessDown spawn 'xbacklight -dec 5 &&  xbacklight -get | while read OUTPUT; do notify-send --app-name "Brightness" "$OUTPUT%"; done'
+
+    # Screenshot tool
+    riverctl map $mode None Print spawn screenshot.sh
 done
+# The scratchpad will live on an unused tag. Which tags are used depends on your
+# config, but rivers default uses the first 9 tags.
+scratch_tag=$((1 << 20 ))
+
+# Toggle the scratchpad with Super+P
+riverctl map normal Super S toggle-focused-tags ${scratch_tag}
+
+# Send windows to the scratchpad with Super+Shift+P
+riverctl map normal Super+Shift S set-view-tags ${scratch_tag}
+
+# Set spawn tagmask to ensure new windows don't have the scratchpad tag unless
+# explicitly set.
+all_but_scratch_tag=$(( ((1 << 32) - 1) ^ $scratch_tag ))
+riverctl spawn-tagmask ${all_but_scratch_tag}
 
 # Set background and border color
 riverctl background-color 0x002b36
@@ -195,6 +218,6 @@ riverctl default-layout filtile
 filtile \
     --output HDMI-A-1 smart-padding 3, \
     --tags $((1 << 6)) pad on, \
-    --tags $((1 << 6)) view-padding 5, \
-    --tags $((1 << 6)) outer-padding 5 
+    --tags $((1 << 6)) view-padding 4, \
+    --tags $((1 << 6)) outer-padding 3 
     --output eDP-1 smart-padding 3 &

@@ -1,4 +1,4 @@
-@define-color background rgba(31, 35, 53, 0.85);
+@define-color background #010c12;
 @define-color foreground #ffffff;
 @define-color focused #ffffff;
 @define-color occupied #808080;
@@ -62,7 +62,7 @@ window#waybar {
 
 #mpd {
     background-color: @background;
-    padding: 0px 16px 0px 9px;
+    padding: 0px 9px 0px 9px;
     margin-left: 4px;
     border: 1px solid #5e5e5e;
 }

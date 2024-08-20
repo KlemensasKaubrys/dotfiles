@@ -38,9 +38,9 @@
       }
    },
    "mpd": {
-      "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
-      "format-disconnected": "Disconnected ",
-      "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+      "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+      "format-disconnected": "Disconnected",
+      "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
       "interval": 10,
       "consume-icons": {
          "on": " "
@@ -64,7 +64,7 @@
    },
    "group/systeminfo": {
       "modules": [
-         "load",
+         "temperature",
          "battery",
          "bluetooth",
          "wireplumber"
@@ -117,7 +117,16 @@
       "format": " {load1}",
       "max-length": 10
    },
+   "temperature": {
+      "format": " {temperatureC}°C",
+      "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon6/temp1_input",
+      "interval": 5
+   },
    "river/window": {
-      "format": "{}"
+      "format": "{}",
+      "max-length": 40
+   },
+   "river/tags": {
+      "num-tags": 6 
    }
 }

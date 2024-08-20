@@ -3,6 +3,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+alias yt-mp3='yt-dlp -f bestaudio --extract-audio --audio-quality 0 --audio-format mp3 -o "%(playlist_index)02d - %(title)s.%(ext)s"'
+alias update-all='sudo xbps-install -Su && flatpak update'
 alias ls='ls --color=auto'
 alias sudovim='sudo -E vim'
 PS1='[\u@\h \W]\$ '
@@ -10,6 +12,10 @@ export PATH="$PATH:$HOME/dotfiles/scripts"
 export HISTFILESIZE=10000
 export HISTSIZE=500
 export HISTTIMEFORMAT="%F %T | "
+export EDITOR=nvim
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=river
+
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 

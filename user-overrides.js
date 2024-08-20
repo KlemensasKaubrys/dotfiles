@@ -106,4 +106,4 @@ user_pref("identity.fxaccounts.enabled", false);
 user_pref("privacy.resistFingerprinting.letterboxing", false);
 // Hardware decoding
 user_pref("gfx.webrender.all", true);
-user_pref("", false);
+user_pref("media.ffmpeg.vaapi.enabled", true);

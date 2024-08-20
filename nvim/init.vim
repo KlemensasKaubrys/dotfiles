@@ -4,6 +4,7 @@ call plug#begin()
   Plug 'folke/tokyonight.nvim'
   Plug 'xiyaowong/transparent.nvim'
   Plug 'itchyny/lightline.vim'
+  Plug 'ziglang/zig.vim'
 call plug#end()
 
 " Settings
@@ -41,6 +42,8 @@ set ttyfast
 set noswapfile
 colorscheme tokyonight-night
 let g:lightline = {'colorscheme': 'tokyonight'}
+" Disable automatic formating for zig
+let g:zig_fmt_autosave = 0
 
 " Keybinds
 nnoremap <leader>t :NERDTreeToggle<CR>
@@ -55,9 +58,12 @@ imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
-"So I can move around in insert
+" So I can move around in insert
 inoremap <C-k> <C-o>gk
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 inoremap <C-j> <C-o>gj
-
+" So I can actually delete
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+xnoremap <leader>p "_dP

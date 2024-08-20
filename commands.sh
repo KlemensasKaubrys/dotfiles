@@ -5,6 +5,7 @@ builddir=$(pwd)
 
 xbps-install -Suy
 cd $builddir
+mkdir -p /home/$username/Screenshots/temp
 mkdir -p /home/$username/.config
 chown -R $username:$username /home/$username
 rm /home/$username/.bashrc
@@ -19,9 +20,9 @@ ln -s /home/$username/dotfiles/waybar /home/$username/.config/
 ln -s /home/$username/dotfiles/foot /home/$username/.config/
 ln -s /home/$username/dotfiles/mako /home/$username/.config/
 ln -s /home/$username/dotfiles/tofi /home/$username/.config/
-ln -s /home/$username/dotfiles/vim /home/$username/.config/
 ln -s /home/$username/dotfiles/gtklock /home/$username/.config/
 ln -s /home/$username/dotfiles/nvim /home/$username/.config/
+ln -s /home/$username/dotfiles/thinkfan.conf /etc/
 
 # Change xbps mirror
 mkdir -p /etc/xbps.d
@@ -35,16 +36,11 @@ chown -R $username:$username /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-3.0
 
 # Install base system
-xbps-install -Sy river Waybar tofi mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet flameshot wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap wlr-randr yazi ImageMagick ufw mate-polkit gtklock swaybg xorg-fonts fonts-roboto-ttf foot grim firefox base-devel bluez
+xbps-install -Sy river Waybar tofi mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap wlr-randr yazi ImageMagick ufw mate-polkit gtklock swaybg xorg-fonts fonts-roboto-ttf foot grim firefox base-devel bluez xdg-desktop-portal-gtk lm_sensors neofetch gthumb btop xbacklight libnotify thinkfan
 
+ln -s /etc/sv/polkitd /var/service/
 ln -s /etc/sv/dbus /var/service/
 ln -s /etc/sv/bluetoothd /var/service/
-ln -s /home/clemens/dotfiles/user-overrides.js /home/$username/.mozilla/firefox/*.default-default/
-chown -R $username:$username /home/$username/.mozilla/firefox/*.default-default/user-overrides.js
-
-# Installing vim-plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # Downloading anki and picard, adding them to binaries
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -57,6 +53,9 @@ ln -s /var/lib/flatpak/exports/bin/cc.arduino.IDE2 /usr/bin/arduino
 # Disabling bitmaps
 ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
 xbps-reconfigure -f fontconfig
+
+# Backlight fix
+echo "%video ALL=(ALL) NOPASSWD: /usr/bin/xbacklight" >> /etc/sudoers
 
 # Install filtile
 cd /usr/bin
@@ -146,6 +145,12 @@ EOF
 
 rm -f /var/service/${SERVICE_NAME}
 ln -s /etc/sv/${AUTOLOGIN_SERVICE_NAME} /var/service/
+
+# Apple cursor
+cd ~/Downloads
+wget https://github.com/ful1e5/apple_cursor/releases/latest/download/macOS.tar.xz
+tar -xvf macOS.tar.gz
+sudo mv macOS* /usr/share/icons/
 
 ask_and_restart() {
     read -p "Do you want to restart now? (yes/no): " response
