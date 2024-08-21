@@ -14,7 +14,6 @@ riverctl default-attach-mode bottom
 riverctl focus-follows-cursor always
 riverctl set-cursor-warp on-focus-change
 riverctl hide-cursor when-typing disabled
-riverctl xcursor-theme macOS 24
 
 # ---- Monitr ----
 wlr-randr --output HDMI-A-1 --mode 1920x1080@60Hz --pos -1920,0
@@ -29,7 +28,6 @@ riverctl spawn "sleep 0.2 && waybar -c /home/clemens/.config/waybar/config.jsonc
 riverctl spawn mako
 riverctl spawn import-gsettings
 riverctl spawn "swaybg -o \* -i ~/Wallpapers/Upscaled/wallhaven-dgeqoj_waifu2x_art_noise1_scale.png -m fill"
-riverctl spawn "gsettings set org.gnome.desktop.interface cursor-theme 'macOS'"
 riverctl spawn "/usr/libexec/polkit-mate-authentication-agent-1"
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)

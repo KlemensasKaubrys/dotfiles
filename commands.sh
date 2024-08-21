@@ -36,7 +36,7 @@ chown -R $username:$username /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-3.0
 
 # Install base system
-xbps-install -Sy river Waybar tofi mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap wlr-randr yazi ImageMagick ufw mate-polkit gtklock swaybg xorg-fonts fonts-roboto-ttf foot grim firefox base-devel bluez xdg-desktop-portal-gtk lm_sensors neofetch gthumb btop xbacklight libnotify thinkfan
+xbps-install -Sy river Waybar tofi zoxide fzf mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap wlr-randr yazi ImageMagick ufw mate-polkit gtklock swaybg xorg-fonts fonts-roboto-ttf foot grim firefox base-devel bluez xdg-desktop-portal-gtk lm_sensors neofetch gthumb btop xbacklight libnotify thinkfan
 
 ln -s /etc/sv/polkitd /var/service/
 ln -s /etc/sv/dbus /var/service/
@@ -48,7 +48,6 @@ flatpak install flathub net.ankiweb.Anki app.drey.EarTag com.github.tchx84.Flats
 ln -s /var/lib/flatpak/exports/bin/net.ankiweb.Anki /usr/bin/anki
 ln -s /var/lib/flatpak/exports/bin/com.github.tchx84.Flatseal /usr/bin/flatseal
 ln -s /var/lib/flatpak/exports/bin/app.drey.EarTag /usr/bin/eartag
-ln -s /var/lib/flatpak/exports/bin/cc.arduino.IDE2 /usr/bin/arduino
 
 # Disabling bitmaps
 ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
@@ -122,6 +121,12 @@ update-grub
 sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/s/"$/ radeon.dpm=1 amd_pstate=disable"/' /etc/default/grub
 update-grub
 
+# Setting up thinkfan 
+touch /etc/modprobe.d/thinkpad_acpi.conf
+echo "options thinkpad_acpi fan_control=1" > /etc/modprobe.d/thinkpad_acpi.conf
+xbps-reconfigure -f linux6.6
+ln -s /etc/sv/thinkfan /var/service/
+
 # Setting up autologin
 SERVICE_NAME="agetty-tty1"
 AUTOLOGIN_SERVICE_NAME="agetty-autologin-tty1"
@@ -146,11 +151,6 @@ EOF
 rm -f /var/service/${SERVICE_NAME}
 ln -s /etc/sv/${AUTOLOGIN_SERVICE_NAME} /var/service/
 
-# Apple cursor
-cd ~/Downloads
-wget https://github.com/ful1e5/apple_cursor/releases/latest/download/macOS.tar.xz
-tar -xvf macOS.tar.gz
-sudo mv macOS* /usr/share/icons/
 
 ask_and_restart() {
     read -p "Do you want to restart now? (yes/no): " response

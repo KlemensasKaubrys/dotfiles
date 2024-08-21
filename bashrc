@@ -68,3 +68,5 @@ extract() {
 		fi
 	done
 }
+
+eval "$(zoxide init bash)"
