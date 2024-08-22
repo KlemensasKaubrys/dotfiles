@@ -11,7 +11,6 @@ chown -R $username:$username /home/$username
 rm /home/$username/.bashrc
 rm /home/$username/.bash_profile
 ln -s /home/$username/dotfiles/bashrc /home/$username/.bashrc
-ln -s /home/$username/dotfiles/bash_profile /home/$username/.bash_profile
 ln -s /home/$username/dotfiles/mpd /home/$username/.config/
 ln -s /home/$username/dotfiles/fastfetch /home/$username/.config/
 ln -s /home/$username/dotfiles/ncmpcpp /home/$username/.config/
@@ -23,11 +22,6 @@ ln -s /home/$username/dotfiles/tofi /home/$username/.config/
 ln -s /home/$username/dotfiles/gtklock /home/$username/.config/
 ln -s /home/$username/dotfiles/nvim /home/$username/.config/
 ln -s /home/$username/dotfiles/thinkfan.conf /etc/
-
-# Change xbps mirror
-mkdir -p /etc/xbps.d
-cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
-sed -i 's|https://repo-default.voidlinux.org|https://repo-de.voidlinux.org|g' /etc/xbps.d/*-repository-*.conf
 
 # Fix pavucontrol theming
 mkdir -p /home/$username/.config/gtk-3.0
@@ -151,21 +145,5 @@ EOF
 rm -f /var/service/${SERVICE_NAME}
 ln -s /etc/sv/${AUTOLOGIN_SERVICE_NAME} /var/service/
 
-
-ask_and_restart() {
-    read -p "Do you want to restart now? (yes/no): " response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" == "yes" ]; then
-        echo "Restarting..."
-        reboot
-    elif [ "$response" == "no" ]; then
-        echo "Exiting..."
-        exit 0
-    else
-        echo "Invalid response. Please enter 'yes' or 'no'."
-        ask_and_restart
-    fi
-}
-
-ask_and_restart
+ln -s /home/$username/dotfiles/bash_profile /home/$username/.bash_profile
+reboot
