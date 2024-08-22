@@ -44,7 +44,7 @@ ln -s /etc/sv/bluetoothd /var/service/
 
 # Downloading anki and picard, adding them to binaries
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub net.ankiweb.Anki app.drey.EarTag com.github.tchx84.Flatseal cc.arduino.IDE2
+flatpak install flathub net.ankiweb.Anki app.drey.EarTag com.github.tchx84.Flatseal
 ln -s /var/lib/flatpak/exports/bin/net.ankiweb.Anki /usr/bin/anki
 ln -s /var/lib/flatpak/exports/bin/com.github.tchx84.Flatseal /usr/bin/flatseal
 ln -s /var/lib/flatpak/exports/bin/app.drey.EarTag /usr/bin/eartag
