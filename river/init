@@ -39,7 +39,7 @@ riverctl map normal Super F4 spawn powermenu.sh
 riverctl map normal Super Q spawn firefox-wayland
 riverctl map normal Super E spawn pcmanfm
 riverctl map normal Super W spawn pavucontrol
-riverctl map normal Super+Shift S spawn 'grim -g "$(slurp)" "$HOME/Screenshots/$(date +%Y-%m-%d_%I:%M%p).png"'
+riverctl map normal Super+Shift A spawn 'grim -g "$(slurp)" "$HOME/Screenshots/$(date +%Y-%m-%d_%I:%M%p).png"'
 
 # Super+Q to close the focused view
 riverctl map normal Super+Shift C close
