@@ -15,19 +15,18 @@ riverctl focus-follows-cursor always
 riverctl set-cursor-warp on-focus-change
 riverctl hide-cursor when-typing disabled
 
-# ---- Monitr ----
-wlr-randr --output HDMI-A-1 --mode 1920x1080@60Hz --pos -1920,0
+# ---- Monitor ----
+riverctl spawn kanshi
 
 # ---- Autostart ----
 riverctl spawn "foot --server"
 riverctl spawn pipewire
+riverctl spawn swww-daemon
 riverctl spawn flameshot
 riverctl spawn nm-applet
 riverctl spawn mpd
 riverctl spawn "sleep 0.2 && waybar -c /home/clemens/.config/waybar/config.jsonc -s /home/clemens/.config/waybar/style.css"
 riverctl spawn mako
-riverctl spawn import-gsettings
-riverctl spawn "swaybg -o \* -i ~/Wallpapers/Upscaled/wallhaven-dgeqoj_waifu2x_art_noise1_scale.png -m fill"
 riverctl spawn "/usr/libexec/polkit-mate-authentication-agent-1"
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
@@ -40,7 +39,7 @@ riverctl map normal Super F4 spawn powermenu.sh
 riverctl map normal Super Q spawn firefox-wayland
 riverctl map normal Super E spawn pcmanfm
 riverctl map normal Super W spawn pavucontrol
-
+riverctl map normal Super+Shift S spawn 'grim -g "$(slurp)" "$HOME/Screenshots/$(date +%Y-%m-%d_%I:%M%p).png"'
 
 # Super+Q to close the focused view
 riverctl map normal Super+Shift C close
@@ -178,8 +177,6 @@ do
     riverctl map $mode None XF86MonBrightnessUp   spawn 'xbacklight -inc 5 &&  xbacklight -get | while read OUTPUT; do notify-send --app-name "Brightness" "$OUTPUT%"; done'
     riverctl map $mode None XF86MonBrightnessDown spawn 'xbacklight -dec 5 &&  xbacklight -get | while read OUTPUT; do notify-send --app-name "Brightness" "$OUTPUT%"; done'
 
-    # Screenshot tool
-    riverctl map $mode None Print spawn screenshot.sh
 done
 # The scratchpad will live on an unused tag. Which tags are used depends on your
 # config, but rivers default uses the first 9 tags.

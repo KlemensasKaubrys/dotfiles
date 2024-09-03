@@ -5,6 +5,7 @@ call plug#begin()
   Plug 'xiyaowong/transparent.nvim'
   Plug 'itchyny/lightline.vim'
   Plug 'ziglang/zig.vim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " Settings
