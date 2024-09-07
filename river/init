@@ -212,7 +212,7 @@ riverctl rule-add -app-id "bar" csd
 riverctl default-layout filtile
 
 filtile \
-    --output DP-1 smart-padding 2, \
+    --output HDMI-A-1 smart-padding 2, \
     --tags $((1 << 6)) pad on, \
     --tags $((1 << 6)) view-padding 2, \
     --tags $((1 << 6)) outer-padding 0, \ 
