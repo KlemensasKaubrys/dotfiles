@@ -84,7 +84,7 @@
          "critical": 25
       },
       "format": "{icon} {capacity}%",
-      "format-charging": "{capacity}% <span color=\"#ffffff\">󰂄<\/span>",
+      "format-charging": "<span color=\"#ffffff\">󰂄<\/span> {capacity}%",
       "format-icons": [
          "<span color=\"#ffffff\">󰂎<\/span>",
          "<span color=\"#ffffff\">󰁻<\/span>",
@@ -127,6 +127,6 @@
       "max-length": 40
    },
    "river/tags": {
-      "num-tags": 6 
+      "num-tags": 9
    }
 }

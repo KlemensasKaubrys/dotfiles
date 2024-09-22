@@ -34,12 +34,16 @@ riverctl map normal Super+Shift Return spawn footclient
 riverctl map normal Super P spawn launch-tofi
 riverctl map normal Super+Shift P spawn keyboardswitcher.sh
 riverctl map normal Super A spawn bluetooth.sh
+riverctl map normal Super D spawn code
 riverctl map normal Super F1 spawn lock.sh
 riverctl map normal Super F4 spawn powermenu.sh
 riverctl map normal Super Q spawn firefox-wayland
 riverctl map normal Super E spawn pcmanfm
 riverctl map normal Super W spawn pavucontrol
-riverctl map normal Super+Shift A spawn 'grim -g "$(slurp)" "$HOME/Screenshots/$(date +%Y-%m-%d_%I:%M%p).png"'
+riverctl map normal Super+Shift A spawn 'grim -g "$(slurp)" - | swappy -f -'
+riverctl xcursor-theme Adwaita
+riverctl spawn 'gsettings set org.gnome.desktop.interface cursor-theme Adwaita'
+riverctl spawn 'gsettings set org.gnome.desktop.interface cursor-size 11'
 
 # Super+Q to close the focused view
 riverctl map normal Super+Shift C close
@@ -213,7 +217,8 @@ riverctl default-layout filtile
 
 filtile \
     --output HDMI-A-1 smart-padding 2, \
-    --tags $((1 << 6)) pad on, \
-    --tags $((1 << 6)) view-padding 2, \
-    --tags $((1 << 6)) outer-padding 0, \ 
+    --output HDMI-A-1 outer-padding 2, \
+    --output HDMI-A-1 inner-padding 2, \
+    --output eDP-1 outer-padding 2, \
+    --output eDP-1 inner-padding 2, \
     --output eDP-1 smart-padding 2 &

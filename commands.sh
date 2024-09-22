@@ -31,7 +31,7 @@ chown -R $username:$username /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-3.0
 
 # Install base system
-xbps-install -Sy river Waybar tofi zoxide fzf mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap kanshi yazi ImageMagick ufw mate-polkit gtklock swaybg xorg-fonts fonts-roboto-ttf foot grim firefox base-devel bluez xdg-desktop-portal-gtk lm_sensors neofetch gthumb btop xbacklight libnotify thinkfan
+xbps-install -Sy river Waybar tofi fzf mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd ncmpcpp flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet wl-clipboard feh ffmpeg mpv yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs pcmanfm setxkbmap kanshi ImageMagick ufw mate-polkit gtklock swaybg xorg-fonts fonts-roboto-ttf foot grim firefox base-devel bluez xdg-desktop-portal-gtk lm_sensors neofetch btop xbacklight libnotify thinkfan vscode fastfetch slurp swappy
 
 ln -s /etc/sv/polkitd /var/service/
 ln -s /etc/sv/dbus /var/service/
@@ -39,10 +39,15 @@ ln -s /etc/sv/bluetoothd /var/service/
 
 # Downloading anki and picard, adding them to binaries
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub net.ankiweb.Anki app.drey.EarTag com.github.tchx84.Flatseal
+flatpak install -y flathub net.ankiweb.Anki app.drey.EarTag com.github.tchx84.Flatseal md.obsidian.Obsidian
 ln -s /var/lib/flatpak/exports/bin/net.ankiweb.Anki /usr/bin/anki
 ln -s /var/lib/flatpak/exports/bin/com.github.tchx84.Flatseal /usr/bin/flatseal
 ln -s /var/lib/flatpak/exports/bin/app.drey.EarTag /usr/bin/eartag
+ln -s /var/lib/flatpak/exports/bin/md.obsidian.Obsidian /usr/bin/obsidian
+
+# Force wayland on all apps
+sed -i 's|exec /usr/bin/flatpak run|exec /usr/bin/flatpak run --socket=wayland|g' /var/lib/flatpak/exports/bin/*
+
 
 # Disabling bitmaps
 ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
@@ -50,12 +55,6 @@ xbps-reconfigure -f fontconfig
 
 # Backlight fix
 echo "%video ALL=(ALL) NOPASSWD: /usr/bin/xbacklight" >> /etc/sudoers
-
-# Install filtile
-cd /usr/bin
-wget https://github.com/KlemensasKaubrys/filtile/releases/download/stable/filtile
-chmod +x filtile
-cd $builddir
 
 # Pipewire configuration
 mkdir -p /etc/pipewire/pipewire.conf.d

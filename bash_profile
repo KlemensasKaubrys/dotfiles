@@ -11,5 +11,5 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
 fi
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-  exec dbus-run-session river
+  exec dbus-run-session river -no-xwayland
 fi

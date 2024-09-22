@@ -55,7 +55,7 @@ window#waybar {
 
 #tray {
     background-color: @background;
-    padding: 0px 8px 0px 9px;
+    padding: 3px 8px 3px 9px;
     margin-left: 4px;
     border: 1px solid #5e5e5e;
 }

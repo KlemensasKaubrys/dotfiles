@@ -3,11 +3,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias yt-mp3='yt-dlp -f bestaudio --extract-audio --audio-quality 0 --audio-format mp3 -o "%(playlist_index)02d - %(title)s.%(ext)s"'
-alias update-all='sudo xbps-install -Su && flatpak update'
-alias ls='ls --color=auto'
-alias sudovim='sudo -E vim'
-PS1='[\u@\h \W]\$ '
 export PATH="$PATH:$HOME/dotfiles/scripts"
 export HISTFILESIZE=10000
 export HISTSIZE=500
@@ -33,6 +28,12 @@ shopt -s histappend
 PROMPT_COMMAND='history -a'
 
 # Alias's to modified commands
+alias yt-mp3='yt-dlp -f bestaudio --extract-audio --audio-quality 0 --audio-format mp3 -o "%(playlist_index)02d - %(title)s.%(ext)s"'
+alias update-all='sudo xbps-install -Su && flatpak update'
+alias ls='ls --color=auto'
+alias sudovim='sudo -E vim'
+PS1='[\u@\h \W]\$ '
+alias espshell='previous_dir=$(pwd) && cd /home/$USER/esp-idf/ && . ./export.sh && cd "$previous_dir"'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='trash -v'
@@ -45,6 +46,7 @@ alias apt-get='sudo apt-get'
 alias vi='nvim'
 alias svi='sudo vi'
 alias vis='nvim "+set si"'
+alias record='wf-recorder && ffmpeg -i recording.mkv -vf "scale=1920:1080,fps=60" -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 128k -movflags +faststart output.mp4'
 
 extract() {
 	for archive in "$@"; do
@@ -69,4 +71,3 @@ extract() {
 	done
 }
 
-eval "$(zoxide init bash)"
