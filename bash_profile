@@ -13,3 +13,4 @@ fi
 if [ "$(tty)" = "/dev/tty1" ]; then
   exec dbus-run-session river -no-xwayland
 fi
+. "$HOME/.cargo/env"

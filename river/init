@@ -37,7 +37,7 @@ riverctl map normal Super A spawn bluetooth.sh
 riverctl map normal Super D spawn code
 riverctl map normal Super F1 spawn lock.sh
 riverctl map normal Super F4 spawn powermenu.sh
-riverctl map normal Super Q spawn firefox-wayland
+riverctl map normal Super Q spawn chromium
 riverctl map normal Super E spawn pcmanfm
 riverctl map normal Super W spawn pavucontrol
 riverctl map normal Super+Shift A spawn 'grim -g "$(slurp)" - | swappy -f -'

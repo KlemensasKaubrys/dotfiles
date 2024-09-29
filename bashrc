@@ -46,7 +46,7 @@ alias apt-get='sudo apt-get'
 alias vi='nvim'
 alias svi='sudo vi'
 alias vis='nvim "+set si"'
-alias record='wf-recorder && ffmpeg -i recording.mkv -vf "scale=1920:1080,fps=60" -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 128k -movflags +faststart output.mp4'
+alias record='wf-recorder && ffmpeg -i input.mp4 -c:v libx264 -preset veryslow -pix_fmt yuv420p -vf scale=-2:<height> -pass 1 -b:v <bitrate> -an -f null NUL'
 
 extract() {
 	for archive in "$@"; do
@@ -71,3 +71,4 @@ extract() {
 	done
 }
 
+. "$HOME/.cargo/env"
