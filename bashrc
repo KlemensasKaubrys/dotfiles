@@ -70,5 +70,3 @@ extract() {
 		fi
 	done
 }
-
-. "$HOME/.cargo/env"

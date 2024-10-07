@@ -11,9 +11,6 @@ chown -R $username:$username /home/$username
 rm /home/$username/.bashrc
 rm /home/$username/.bash_profile
 ln -s /home/$username/dotfiles/bashrc /home/$username/.bashrc
-ln -s /home/$username/dotfiles/mpd /home/$username/.config/
-ln -s /home/$username/dotfiles/fastfetch /home/$username/.config/
-ln -s /home/$username/dotfiles/ncmpcpp /home/$username/.config/
 ln -s /home/$username/dotfiles/river /home/$username/.config/
 ln -s /home/$username/dotfiles/waybar /home/$username/.config/
 ln -s /home/$username/dotfiles/foot /home/$username/.config/
@@ -24,14 +21,16 @@ ln -s /home/$username/dotfiles/nvim /home/$username/.config/
 ln -s /home/$username/dotfiles/kanshi /home/$username/.config/
 ln -s /home/$username/dotfiles/thinkfan.conf /etc/
 
+
 # Fix pavucontrol theming
 mkdir -p /home/$username/.config/gtk-3.0
+ln -s /home/$username/dotfiles/gtk-3.0 /home/$username/.config/
 ln -s /home/$username/.config/gtk-3.0 /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-4.0
 chown -R $username:$username /home/$username/.config/gtk-3.0
 
 # Install base system
-xbps-install -Sy river Waybar tofi fzf mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet wl-clipboard ffmpeg  yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs nemo setxkbmap kanshi ImageMagick ufw mate-polkit gtklock swaybg xorg-fonts fonts-roboto-ttf foot grim firefox base-devel bluez xdg-desktop-portal-gtk lm_sensors neofetch btop xbacklight libnotify thinkfan vscode fastfetch slurp swappy celluloid
+xbps-install -Sy river Waybar tofi fzf mako libevdev wayland wayland-protocols wlroots libxkbcommon-devel dbus elogind polkit pixman mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu curl mpd flatpak pipewire wireplumber libspa-bluetooth neovim arc-theme pavucontrol network-manager-applet wl-clipboard ffmpeg  yt-dlp wget nerd-fonts font-awesome6 lxappearance gvfs nemo setxkbmap kanshi ImageMagick ufw mate-polkit gtklock swww xorg-fonts fonts-roboto-ttf foot grim chromium base-devel bluez xdg-desktop-portal-gtk lm_sensors neofetch btop xbacklight libnotify thinkfan vscode fastfetch slurp swappy celluloid
 
 ln -s /etc/sv/polkitd /var/service/
 ln -s /etc/sv/dbus /var/service/
@@ -61,6 +60,8 @@ mkdir -p /etc/pipewire/pipewire.conf.d
 ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
 ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
 
+# --------------- Security -----------------
+
 # Setting up firewall
 ufw limit 22/tcp
 ufw allow 80/tcp
@@ -69,6 +70,10 @@ ufw default deny incoming
 ufw default allow outgoing
 ufw enable
 ln -s /etc/sv/ufw /var/service/
+
+# Deny all incoming ssh connections.
+touch /etc/hosts.deny
+echo "sshd: ALL" >> /etc/hosts.deny
 
 # Install tlp
 xbps-install -Sy tlp tlp-rdw smartmontools ethtool
