@@ -1,17 +1,18 @@
-@define-color background #010c12;
+@define-color background #000000;
 @define-color foreground #ffffff;
 @define-color focused #ffffff;
 @define-color occupied #808080;
 @define-color urgent #f7768e;
-@define-color bluetooth #2ac3de;
 
 * {
   border: none;
   border-radius: 8px;
-  font-family: "Roboto", "Font Awesome 6 Free";
-  font-size: 16px;
-  min-height: 0px;
-  background-color: transparent;
+  font-family: "Roboto Mono", "Font Awesome 6 Free";
+  font-size: 15px;
+  background-color: @background;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
 }
 
 window#waybar {
@@ -19,60 +20,63 @@ window#waybar {
 }
 
 #clock {
-    background-color: @background;
-    padding: 0px 5px 0px 9px;
-    margin-left: 4px;
-    border: 1px solid #5e5e5e;
+  background-color: @background;
+  padding: 0px 5px 0px 9px;
+  margin-left: 4px;
+  border-bottom: 2px solid @foreground;
+
 }
 
-#systeminfo {
-    background-color: @background;
-    padding: 0px 5px 0px 12px;
-    margin-left: 4px;
-    border: 1px solid #5e5e5e;
-}
 #window {
-    background-color: @background;
-    padding: 0px 8px 0px 8px;
-    margin-left: 4px;
-    border: 1px solid #5e5e5e;
+  background-color: @background;
+  padding: 0px 8px 0px 8px;
+  margin-left: 4px;
+  border-bottom: 2px solid @foreground;
 }
+
+#hardware {
+  border-top: 2px solid @foreground;
+}
+
 #battery {
-    margin-left: 14px
+  margin-left: 19px
 }
+
 #bluetooth {
-    margin-left: 14px
+  margin-left: 19px
 }
+
 #wireplumber {
-    margin-left: 14px
+  margin-left: 11px
 }
-#custom-lang {
-    background-color: @background;
-    padding: 0px 11px 0px 11px;
-    margin-left: 4px;
-    border: 1px solid #5e5e5e;
+
+#temperature {
+  margin-left: 9px
+}
+
+#backlight {
+  margin-left: 19px
 }
 
 #tray {
-    background-color: @background;
-    padding: 3px 8px 3px 9px;
-    margin-left: 4px;
-    border: 1px solid #5e5e5e;
+  background-color: @background;
+  padding: 3px 8px 3px 9px;
+  margin-left: 4px;
+  border-bottom: 2px solid @foreground;
 }
 
-#mpd {
-    background-color: @background;
-    padding: 0px 9px 0px 9px;
-    margin-left: 4px;
-    border: 1px solid #5e5e5e;
+#mpris {
+  border-top: 2px solid @foreground;
+  padding: 3px 8px 3px 9px;
 }
 
 #tags {
-    background-color: @background;
-    padding: 0px 0px;
-    color: @occupied;
-    border: 1px solid #5e5e5e;
+  background-color: @background;
+  padding: 0px 0px;
+  color: @occupied;
+  border-top: 2px solid @foreground;
 }
+
 tooltip,
 #clock.calendar,
 #clock tooltip,
@@ -80,9 +84,13 @@ tooltip,
 #clock {
     background: @background;
 }
+
 #tags button {
   color: @occupied;
+  margin: 0px 4px;
+  padding: 0px 7px;
 }
+
 #tags button:hover {
   box-shadow: inherit;
   text-shadow: inherit;
@@ -96,6 +104,7 @@ tooltip,
 
 #tags button.focused {
   color: @foreground;
+  border-bottom: 2px solid @foreground;
 }
 
 #tags button.urgent {

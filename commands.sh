@@ -38,11 +38,13 @@ ln -s /etc/sv/bluetoothd /var/service/
 
 # Downloading anki and picard, adding them to binaries
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install -y flathub net.ankiweb.Anki app.drey.EarTag com.github.tchx84.Flatseal md.obsidian.Obsidian
+flatpak install -y flathub net.ankiweb.Anki app.drey.EarTag com.github.tchx84.Flatseal md.obsidian.Obsidian com.valvesoftware.Steam
 ln -s /var/lib/flatpak/exports/bin/net.ankiweb.Anki /usr/bin/anki
 ln -s /var/lib/flatpak/exports/bin/com.github.tchx84.Flatseal /usr/bin/flatseal
 ln -s /var/lib/flatpak/exports/bin/app.drey.EarTag /usr/bin/eartag
 ln -s /var/lib/flatpak/exports/bin/md.obsidian.Obsidian /usr/bin/obsidian
+ln -s /var/lib/flatpak/exports/bin/com.valvesoftware.Steam /usr/bin/steam
+
 
 # Force wayland on all apps
 sed -i 's|exec /usr/bin/flatpak run|exec /usr/bin/flatpak run --socket=wayland|g' /var/lib/flatpak/exports/bin/*
