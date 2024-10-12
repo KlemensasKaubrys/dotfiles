@@ -32,7 +32,7 @@ alias yt-mp3='yt-dlp -f bestaudio --extract-audio --audio-quality 0 --audio-form
 alias update-all='sudo xbps-install -Su && flatpak update'
 alias ls='ls --color=auto'
 alias sudovim='sudo -E vim'
-PS1='[\u@\h \W]\$ '
+PS1='\u\[\e[1;36m\]@\h❄ \w\ $ \[\e[0m\]'
 alias espshell='previous_dir=$(pwd) && cd /home/$USER/esp-idf/ && . ./export.sh && cd "$previous_dir"'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -70,3 +70,15 @@ extract() {
 		fi
 	done
 }
+
+sleep 0.02 && check_terminal_size_and_run() {
+    local width=$(tput cols)
+
+    local min_width=83
+
+    if [[ "$width" -ge "$min_width" ]]; then
+        fastfetch
+
+    fi
+}
+check_terminal_size_and_run
