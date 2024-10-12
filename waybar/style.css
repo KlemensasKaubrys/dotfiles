@@ -99,7 +99,8 @@ tooltip,
 
 #tags button.occupied {
   color: @occupied;
-  font-weight: bold;
+  font-weight: 800;
+  border-top: 2px solid @foreground;
 }
 
 #tags button.focused {

@@ -37,17 +37,18 @@ vim.o.undofile = true
 vim.o.updatetime = 300
 vim.o.signcolumn = "yes"
 
--- Clipboard configuration for wl-copy and wl-paste
+
 vim.g.clipboard = {
     copy = {
-        ['+'] = {'wl-copy', '--foreground'},
-        ['*'] = {'wl-copy', '--foreground'}
+        ['+'] = {'wl-copy'},
+        ['*'] = {'wl-copy'}
     },
     paste = {
-        ['+'] = {'wl-paste', '--no-newline'},
-        ['*'] = {'wl-paste', '--no-newline'}
+        ['+'] = {'wl-paste'},
+        ['*'] = {'wl-paste'}
     }
 }
+
 
 -- Enable filetype plugin and indent
 vim.cmd('filetype plugin indent on')

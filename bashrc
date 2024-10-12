@@ -74,7 +74,7 @@ extract() {
 sleep 0.02 && check_terminal_size_and_run() {
     local width=$(tput cols)
 
-    local min_width=83
+    local min_width=120
 
     if [[ "$width" -ge "$min_width" ]]; then
         fastfetch
