@@ -7,6 +7,8 @@ call plug#begin()
   Plug 'ziglang/zig.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'ayu-theme/ayu-vim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-lua/plenary.nvim'
 call plug#end()
 ]])
 
@@ -115,6 +117,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 -- Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 
+-- Telescope
+vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<CR>', { noremap = true, silent = true })
+
 -- Better window navigation
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
@@ -128,12 +133,6 @@ vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
 -- Move selected line / block of text in visual mode
 vim.api.nvim_set_keymap('x', 'K', ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('x', 'J', ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
-
--- Copy/Paste from system clipboard
-vim.api.nvim_set_keymap('n', '<leader>y', '"+y', { noremap = true })
-vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>p', '"+p', { noremap = true })
-vim.api.nvim_set_keymap('v', '<leader>p', '"+p', { noremap = true })
 
 -- CoC.nvim mappings
 vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {})
